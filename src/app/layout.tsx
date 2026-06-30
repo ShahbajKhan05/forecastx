@@ -4,7 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar"; // Navbar import kiya
 import Footer from "@/components/Footer"; 
 import TechMarquee from '@/components/TechMarquee';
-import About from "@/components/About";
+// import About from "@/components/About";
 
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
@@ -21,7 +21,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Navbar />
         <main className="grow">{children}</main>
         <TechMarquee />
-        <About />
+        {/* <About /> */}
         <Footer />
       </body>
     </html>

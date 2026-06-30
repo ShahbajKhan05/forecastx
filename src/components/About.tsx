@@ -5,6 +5,7 @@ import { ArrowRight } from 'lucide-react';
 import { motion, useInView } from 'framer-motion';
 
 
+
 export default function AboutSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   // useInView triggers the animation when the section comes into the viewport
@@ -167,7 +168,7 @@ export default function AboutSection() {
           style={{ clipPath: 'url(#clip-squiggle)' }}
         >
           <img
-            src="arish1.jpg"
+            src="/arish1.jpg"
             alt="Team member"
             className="object-cover w-full h-full rotate-6 hover:scale-110 transition-transform duration-700"
           />
@@ -183,7 +184,7 @@ export default function AboutSection() {
           style={{ clipPath: 'url(#differentone16)' }}
         >
           <img
-            src="arish2.jpg"
+            src="/arish2.jpg"
             alt="Team member"
             className="object-cover w-full h-full -rotate-6 hover:scale-110 transition-transform duration-700"
           />
@@ -199,7 +200,7 @@ export default function AboutSection() {
           style={{ clipPath: 'url(#differentone8)' }}
         >
           <img
-            src="arish3.jpg"
+            src="/arish3.jpg"
             alt="Team member"
             className="object-cover w-full h-full -rotate-6 hover:scale-110 transition-transform duration-700"
           />
@@ -215,7 +216,7 @@ export default function AboutSection() {
           style={{ clipPath: 'url(#clip-rect)' }}
         >
           <img
-            src="arish4.jpg"
+            src="/arish4.jpg"
             alt="Team member"
             className="object-cover w-full h-full rotate-6 hover:scale-110 transition-transform duration-700"
           />
