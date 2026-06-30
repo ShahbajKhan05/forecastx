@@ -4,6 +4,7 @@ import { useRef } from 'react';
 import { ArrowRight } from 'lucide-react';
 import { motion, useInView } from 'framer-motion';
 
+
 export default function AboutSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   // useInView triggers the animation when the section comes into the viewport
@@ -42,21 +43,13 @@ export default function AboutSection() {
   const headingText = "More Than a Weather App";
   const words = headingText.split(' ');
 
-  const wordAnimation = {
-    hidden: { y: 40, opacity: 0, filter: 'blur(4px)' },
-    visible: (i: number) => ({
-      y: 0,
-      opacity: 1,
-      filter: 'blur(0px)',
-      transition: {
-        type: 'spring',
-        stiffness: 250,
-        damping: 30,
-        delay: 0.1 + i * 0.05, // Stagger effect
-      },
-    }),
-  };
-
+ const wordAnimation = {
+  hidden: {
+    y: 40,
+    opacity: 0,
+    filter: "blur(4px)",
+  },
+};
   return (
     <section className="relative py-32 px-4 bg-black-50 overflow-hidden" ref={containerRef}>
       
@@ -113,22 +106,40 @@ export default function AboutSection() {
           About ForecastX <ArrowRight size={16} className="text-blue-600" />
         </motion.div>
 
-        {/* Word-by-Word Cut Reveal Title */}
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-gray-900 mb-6 text-center leading-[120%] flex flex-wrap justify-center gap-x-[0.3em] overflow-hidden">
-          {words.map((word, i) => (
-            <motion.span
-              key={i}
-              variants={wordAnimation}
-              initial="hidden"
-              animate={isInView ? 'visible' : 'hidden'}
-              custom={i}
-              className="inline-block"
-            >
-              {word}
-            </motion.span>
-          ))}
-        </h2>
-
+       {/* Word-by-Word Cut Reveal Title */}
+<h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-gray-900 mb-6 text-center leading-[120%] flex flex-wrap justify-center gap-x-[0.3em] overflow-hidden">
+  {words.map((word, i) => (
+    <motion.span
+      key={i}
+      initial={{
+        y: 40,
+        opacity: 0,
+        filter: "blur(4px)",
+      }}
+      animate={
+        isInView
+          ? {
+              y: 0,
+              opacity: 1,
+              filter: "blur(0px)",
+            }
+          : {
+              y: 40,
+              opacity: 0,
+              filter: "blur(4px)",
+            }
+      }
+      transition={{
+        duration: 0.6,
+        delay: 0.1 + i * 0.05,
+        ease: "easeOut",
+      }}
+      className="inline-block"
+    >
+      {word}
+    </motion.span>
+  ))}
+</h2>
         {/* Paragraph */}
         <motion.p
           variants={revealUp}
