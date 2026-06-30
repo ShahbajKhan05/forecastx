@@ -3,10 +3,20 @@ import { useState, useEffect } from 'react';
 import { Search, MapPin, Wind, Droplets, CloudRain, Activity, Cloud, Sun } from 'lucide-react';
 import { motion } from 'framer-motion';
 
+interface WeatherData {
+  temp: number;
+  high: number;
+  low: number;
+  desc: string;
+  humidity: number;
+  windSpeed: number;
+  aqi: number;
+}
+
 export default function FinalDashboard() {
   const [city, setCity] = useState('New Delhi');
   const [searchInput, setSearchInput] = useState('');
-  const [data, setData] = useState<any>(null);
+  const [data, setData] = useState<WeatherData | null>(null);
   const [loading, setLoading] = useState(true);
 
   // --- API FETCH LOGIC ---
@@ -33,13 +43,27 @@ export default function FinalDashboard() {
       });
       setCity(weatherData.name);
     } catch (error) {
+      console.error(error);
       alert("City not found!");
     } finally {
       setLoading(false);
     }
   };
 
-  useEffect(() => { fetchWeather('New Delhi'); }, []);
+  useEffect(() => {
+    let active = true;
+    const initWeather = async () => {
+      // Yield to avoid calling setState synchronously during effect mount phase
+      await Promise.resolve();
+      if (active) {
+        fetchWeather('New Delhi');
+      }
+    };
+    initWeather();
+    return () => {
+      active = false;
+    };
+  }, []);
 
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -105,7 +129,7 @@ export default function FinalDashboard() {
           <div className="grid grid-cols-2 lg:grid-cols-1 gap-4">
             <MetricBox icon={<Wind size={20}/>} label="WIND" value={loading ? '--' : data?.windSpeed} unit="km/h" />
             <MetricBox icon={<Droplets size={20}/>} label="HUMIDITY" value={loading ? '--' : data?.humidity} unit="%" />
-            <MetricBox icon={<Activity size={20}/>} label="AQI" value={loading ? '--' : data?.aqi} unit={loading ? '' : getAqiText(data?.aqi)} />
+            <MetricBox icon={<Activity size={20}/>} label="AQI" value={loading ? '--' : data?.aqi} unit={loading ? '' : getAqiText(data?.aqi || 1)} />
           </div>
         </div>
 
@@ -114,8 +138,15 @@ export default function FinalDashboard() {
   );
 }
 
+interface MetricBoxProps {
+  icon: React.ReactNode;
+  label: string;
+  value: string | number;
+  unit: string;
+}
+
 // Reusable White Metric Box
-function MetricBox({ icon, label, value, unit }: any) {
+function MetricBox({ icon, label, value, unit }: MetricBoxProps) {
   return (
     <div className="bg-white p-5 rounded-3xl flex flex-col justify-center gap-2 border border-white/20 shadow-xl transition-transform hover:scale-[1.02]">
       <div className="text-slate-500">{icon}</div>

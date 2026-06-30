@@ -3,6 +3,7 @@
 import { useRef } from 'react';
 import { ArrowRight } from 'lucide-react';
 import { motion, useInView } from 'framer-motion';
+import Image from 'next/image';
 
 
 
@@ -18,7 +19,7 @@ export default function AboutSection() {
       y: 0,
       opacity: 1,
       filter: 'blur(0px)',
-      transition: { delay: i * 0.2, duration: 0.8, ease: [0.25, 0.4, 0.25, 1] },
+      transition: { delay: i * 0.2, duration: 0.8, ease: [0.25, 0.4, 0.25, 1] as const },
     }),
   };
 
@@ -28,7 +29,7 @@ export default function AboutSection() {
       y: 0,
       opacity: 1,
       filter: 'blur(0px)',
-      transition: { delay: i * 0.2, duration: 0.8, ease: [0.25, 0.4, 0.25, 1] },
+      transition: { delay: i * 0.2, duration: 0.8, ease: [0.25, 0.4, 0.25, 1] as const },
     }),
   };
 
@@ -44,13 +45,6 @@ export default function AboutSection() {
   const headingText = "More Than a Weather App";
   const words = headingText.split(' ');
 
- const wordAnimation = {
-  hidden: {
-    y: 40,
-    opacity: 0,
-    filter: "blur(4px)",
-  },
-};
   return (
     <section className="relative py-32 px-4 bg-black-50 overflow-hidden" ref={containerRef}>
       
@@ -164,12 +158,14 @@ export default function AboutSection() {
           initial="hidden"
           animate={isInView ? 'visible' : 'hidden'}
           custom={6}
-          className="w-full h-full rounded-lg overflow-hidden"
+          className="relative w-full h-full rounded-lg overflow-hidden"
           style={{ clipPath: 'url(#clip-squiggle)' }}
         >
-          <img
+          <Image
             src="/arish1.jpg"
             alt="Team member"
+            fill
+            sizes="(max-width: 768px) 100vw, 25vw"
             className="object-cover w-full h-full rotate-6 hover:scale-110 transition-transform duration-700"
           />
         </motion.figure>
@@ -180,12 +176,14 @@ export default function AboutSection() {
           initial="hidden"
           animate={isInView ? 'visible' : 'hidden'}
           custom={7}
-          className="w-full h-full rounded-lg overflow-hidden"
+          className="relative w-full h-full rounded-lg overflow-hidden"
           style={{ clipPath: 'url(#differentone16)' }}
         >
-          <img
+          <Image
             src="/arish2.jpg"
             alt="Team member"
+            fill
+            sizes="(max-width: 768px) 100vw, 25vw"
             className="object-cover w-full h-full -rotate-6 hover:scale-110 transition-transform duration-700"
           />
         </motion.figure>
@@ -196,12 +194,14 @@ export default function AboutSection() {
           initial="hidden"
           animate={isInView ? 'visible' : 'hidden'}
           custom={8}
-          className="w-full h-full rounded-lg overflow-hidden"
+          className="relative w-full h-full rounded-lg overflow-hidden"
           style={{ clipPath: 'url(#differentone8)' }}
         >
-          <img
+          <Image
             src="/arish3.jpg"
             alt="Team member"
+            fill
+            sizes="(max-width: 768px) 100vw, 25vw"
             className="object-cover w-full h-full -rotate-6 hover:scale-110 transition-transform duration-700"
           />
         </motion.figure>
@@ -212,12 +212,14 @@ export default function AboutSection() {
           initial="hidden"
           animate={isInView ? 'visible' : 'hidden'}
           custom={9}
-          className="w-full h-full rounded-lg overflow-hidden"
+          className="relative w-full h-full rounded-lg overflow-hidden"
           style={{ clipPath: 'url(#clip-rect)' }}
         >
-          <img
+          <Image
             src="/arish4.jpg"
             alt="Team member"
+            fill
+            sizes="(max-width: 768px) 100vw, 25vw"
             className="object-cover w-full h-full rotate-6 hover:scale-110 transition-transform duration-700"
           />
         </motion.figure>

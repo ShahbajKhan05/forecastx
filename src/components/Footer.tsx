@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import { FaXTwitter, FaLinkedinIn } from 'react-icons/fa6'; // React icons import
 
 export default function Footer() {
   return (

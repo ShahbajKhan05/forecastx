@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaGithub, FaLinkedin, FaInstagram, FaWhatsapp } from 'react-icons/fa';
+import Image from 'next/image';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,7 +13,7 @@ export default function Navbar() {
       <div className="fixed top-0 left-0 w-full p-4 md:p-8 flex justify-between items-center z-50">
   {/* Logo aur Title ka container */}
   <div className="flex items-center gap-3">
-    <img className="w-10 h-10" src="favicon.ico" alt="Logo" />
+    <Image className="w-10 h-10" src="/favicon.ico" alt="Logo" width={40} height={40} />
     <h1 className="text-lg md:text-xl font-bold tracking-tighter">FORECAST X</h1>
   </div>
   
