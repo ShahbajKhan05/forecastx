@@ -127,9 +127,9 @@ export default function FinalDashboard() {
 
           {/* Quick Metrics Grid (Mobile Optimized) */}
           <div className="grid grid-cols-2 lg:grid-cols-1 gap-4">
-            <MetricBox icon={<Wind size={20}/>} label="WIND" value={loading ? '--' : data?.windSpeed} unit="km/h" />
-            <MetricBox icon={<Droplets size={20}/>} label="HUMIDITY" value={loading ? '--' : data?.humidity} unit="%" />
-            <MetricBox icon={<Activity size={20}/>} label="AQI" value={loading ? '--' : data?.aqi} unit={loading ? '' : getAqiText(data?.aqi || 1)} />
+            <MetricBox icon={<Wind size={20}/>} label="WIND" value={loading ? '--' : (data?.windSpeed ?? '--')} unit="km/h" />
+            <MetricBox icon={<Droplets size={20}/>} label="HUMIDITY" value={loading ? '--' : (data?.humidity ?? '--')} unit="%" />
+            <MetricBox icon={<Activity size={20}/>} label="AQI" value={loading ? '--' : (data?.aqi ?? '--')} unit={loading ? '' : getAqiText(data?.aqi || 1)} />
           </div>
         </div>
 
